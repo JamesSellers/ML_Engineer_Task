@@ -1,10 +1,10 @@
 import pytest
-from flask import Flask
 import json
 import random
 from model_training.data_preprocessing import collect_from_database
 import requests
 
+# Currently hosting is done locally, so GitHub will not get a result from this
 def test_predict():
     """Test the prediction endpoint."""
 
