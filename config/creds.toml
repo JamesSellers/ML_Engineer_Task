@@ -7,3 +7,8 @@ TENANT_ID = "6f5g4h3i"
 DATALAKE_NAME = "rg_data_lake"
 
 # AWS Credentials
+RDS_HOST: 'rds-endpoint.amazonaws.com',
+RDS_PORT: 'XXXX'
+RDS_DB: 'database',
+RDS_USER: 'username',
+RDS_PASSWORD: 'password'

@@ -1,11 +1,42 @@
+"""
+
+Data Preprocessing
+
+This file contains the following functions:
+collect_from_database: This serves to simulate data collection. 
+                    It returns a df populated with insurance claim data.
+load_data: This simulates the data collection process, the df returns is the same
+            as collect_from_database
+process_data: This adds the 'categorical' type to certain columns, required for
+                XGBoost to replace OneHotEncoding
+split_data: Using an input df, we split the data into our training and testing datasets.
+"""
+
+__date__ = "2024-07-08"
+__author__ = "James Sellers"
+
+
+# %% --------------------------------------------------------------------------
+# Imports
+# -----------------------------------------------------------------------------
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import make_classification
 from sklearn.preprocessing import MinMaxScaler
 import string
+# from config.utils import toml_creds
 
 
+# %% --------------------------------------------------------------------------
+# Set Random State
+# -----------------------------------------------------------------------------
+rng = np.random.RandomState(1889)
+
+
+# %% --------------------------------------------------------------------------
+# Defining our functions
+# -----------------------------------------------------------------------------
 def collect_from_database(query: str) -> pd.DataFrame:
     print(f"Executing: {query}")
     n_rows = 10_000
@@ -137,6 +168,33 @@ def load_data():
     SELECT * FROM health_insurance_claims
     """
     df = collect_from_database(query=query)
+
+    # How loading would work with real data
+
+    # Load credentials from the creds file
+    # creds = toml_creds()
+
+    # Establish a connection, e.g. use psycopg2 for AWS RDS
+    # conn = psycopg2.connect(
+    #     host=creds['RDS_HOST'],
+    #     port=creds['RDS_PORT'],
+    #     database=creds['RDS_DB'],
+    #     user=creds['RDS_USER'],
+    #     password=creds['RDS_PASWORD']
+    # )
+    
+    # Create a function that can return queried data as a pandas DataFrame
+    # def fetch_data(query, conn):
+        # ---
+        # ---
+        # ---
+        # return df
+
+    # Collect the data
+    # df = fetch_data(query, conn)
+    # conn.close()
+
+    # 
     return df
 
 
@@ -179,10 +237,15 @@ def process_data(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def split_data(df: pd.DataFrame) -> pd.DataFrame:
-    # Train - Test Split
+    """
+    Split the data into training and testing ready for model use.
+    """
+
+    # Set as, or drop 'claim_status' as relevant
     X = df.drop(columns=["claim_status"])
     y = df["claim_status"]
 
+    # Train - Test Split
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=1889
     )

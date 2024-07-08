@@ -18,6 +18,10 @@ jupyter = "^1.0.0"
 graphviz = "^0.20.3"
 flask = "^3.0.3"
 docker = "^7.1.0"
+pytest = "^8.2.2"
+pytest-cov = "^5.0.0"
+toml = "^0.10.2"
+awscli = "^1.33.22"
 
 
 [build-system]

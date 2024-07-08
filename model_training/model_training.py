@@ -35,7 +35,7 @@ from sklearn.metrics import (
 # %% --------------------------------------------------------------------------
 # Set Random State
 # -----------------------------------------------------------------------------
-rng = np.random.RandomState(123)
+rng = np.random.RandomState(1889)
 
 # %% --------------------------------------------------------------------------
 # Defining our functions
@@ -104,5 +104,9 @@ def evaluate_model(model, X_test, y_test):
         "ROC AUC Score": roc_auc_score(y_test, y_pred_proba),
         "Log Loss": log_loss(y_test, y_pred_proba),
     }
-    joblib.dump(model, "config/model.joblib")
     return metrics
+
+def save_model(model):
+    joblib.dump(model, "config/model.joblib")
+    return("Model successfuly saved")
+    

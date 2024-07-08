@@ -30,6 +30,6 @@ jobs:
 
     - name: Run tests
       run: |
-        poetry run pytest --cov=your_module tests/
+        poetry run pytest --cov= tests/
       env:
         CI: true
