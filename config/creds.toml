@@ -1,0 +1,9 @@
+# Data Ingestion
+ACCOUNT_NAME = "rg_data_sci"
+CLIENT_ID = "a1b2c3d4"
+CLIENT_SECRET = "b1c2d3e4"
+SUBSCRIPTION_ID = "8a7b6c5d"
+TENANT_ID = "6f5g4h3i"
+DATALAKE_NAME = "rg_data_lake"
+
+# AWS Credentials
